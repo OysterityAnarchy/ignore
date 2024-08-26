@@ -99,7 +99,7 @@ function ignore.save(name)
 
 	local f, err = io.open(ignore.config.save_dir .. "/" .. name, 'w')
 	if not f then
-		minetest.log("error", "[Ignore] Failed to save " .. name .. "'s list : " .. err)
+		minetest.log("warning", "[Ignore] Failed to save " .. name .. "'s list : " .. err)
 		return false, err
 	end
 
@@ -117,7 +117,7 @@ function ignore.load(name)
 
 	local f, err = io.open(ignore.config.save_dir .. "/" .. name)
 	if not f then
-		minetest.log("error", "[Ignore] Failed to load " .. name .. "'s list : " .. err)
+		minetest.log("warning", "[Ignore] Failed to load " .. name .. "'s list : " .. err)
 		return false, err
 	end
 
