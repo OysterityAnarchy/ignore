@@ -71,3 +71,16 @@ core.chatcommands["me"].func = function(name, param)
 		end
 	end
 end
+
+local old_msg_callback = core.chatcommands["msg"].func
+core.chatcommands["msg"].func = function(name, param)
+	local sendto, message = param:match("^(%S+)%s(.+)$")
+	for _, pl in pairs(core.get_connected_players()) do
+		local rname = pl:get_player_name()
+		if sendto == rname and ignore.get_ignore(name, rname) then
+			core.log("action", "[ignored] DM from " .. name .. " to " .. sendto.. ": " .. message)
+			return
+		end
+	end
+	return old_msg_callback(name, param)
+end
