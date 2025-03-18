@@ -78,7 +78,7 @@ core.chatcommands["msg"].func = function(name, param)
 	for _, pl in pairs(core.get_connected_players()) do
 		local rname = pl:get_player_name()
 		if sendto == rname and ignore.get_ignore(name, rname) then
-			core.log("action", "[ignored] DM from " .. name .. " to " .. sendto.. ": " .. message)
+			core.log("info", "[ignored] DM from " .. name .. " to " .. sendto.. ": " .. message)
 			return
 		end
 	end
